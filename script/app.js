@@ -1,14 +1,15 @@
-document.querySelector('.form-group').addEventListener('submit', processForm);
+const form = document
+  .querySelector('.form-group')
+  .addEventListener('submit', processForm);
 
 // Handle form
 function processForm(e) {
   e.preventDefault();
   const binValue = document.querySelector('.binary-value').value;
-  const result = document.querySelector('.form-output');
 
-  const error = document.querySelector('.error');
+  const result = document.querySelector('.result');
 
-  if (isValid(binValue, error)) {
+  if (isValid(binValue, e.target)) {
     const convert = parseInt(binValue, 2);
     result.innerHTML = `<p>Result: <strong>${convert} base 10</strong></p>`;
   }
@@ -16,10 +17,13 @@ function processForm(e) {
 
 // Validate user Input
 
-const isValid = (number, error) => {
+const isValid = number => {
   const regExp = /^[0-1]+$/;
   if (!number.match(regExp)) {
+    const error = document.querySelector('.error');
     error.textContent = 'Please enter a valid Binary number';
+
+    // Clear Error
     setTimeout(() => {
       error.textContent = '';
     }, 3000);
