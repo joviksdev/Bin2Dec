@@ -11,7 +11,7 @@ function processForm(e) {
 
   if (isValid(binValue, e.target)) {
     const convert = parseInt(binValue, 2);
-    result.innerHTML = `<p>Result: <strong>${convert} base 10</strong></p>`;
+    result.innerHTML = `<p>Decimal Number: <strong>${convert}</strong></p>`;
   }
 }
 
