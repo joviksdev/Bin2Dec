@@ -11,7 +11,7 @@ function processForm(e) {
 
   if (isValid(binValue, e.target)) {
     const convert = parseInt(binValue, 2);
-    result.innerHTML = `<p>Decimal Number: <strong>${convert}</strong></p>`;
+    result.innerHTML = `<p>Decimal Number(Base Ten): <strong>${convert}</strong></p>`;
   }
 }
 
@@ -19,6 +19,19 @@ function processForm(e) {
 
 const isValid = number => {
   const regExp = /^[0-1]+$/;
+
+  if (number.length > 20) {
+    const error = document.querySelector('.error');
+    error.textContent = 'Binary number must not be 20 digits';
+
+    // Clear Error
+    setTimeout(() => {
+      error.textContent = '';
+    }, 3000);
+
+    return false;
+  }
+
   if (!number.match(regExp)) {
     const error = document.querySelector('.error');
     error.textContent = 'Please enter a valid Binary number';
